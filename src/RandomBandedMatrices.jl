@@ -14,7 +14,7 @@ function bandGOE(n,m)
     for k=1:n
         A[k,k]=2randn()
     end
-    for k=2:m,j=1:n-m+1
+    for k=2:m,j=1:n-k+1
         r=randn()
         A[j,j+k-1]=r
         A[j+k-1,j]=r
