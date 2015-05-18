@@ -9,17 +9,17 @@ bandchi(σ,v::Vector)=SymTridiagonal(σ*randn(length(v)+1),[RandomMatrices.chi(v
 bandchi(v::Vector)=bandchi(1,v)
 bandchi(n::Integer)=bandchi(ones(n))
 
-function bandGOE(σ,n,m)
-    i=[1:n;]
-    j=[1:n;]
-    r=σ*randn(n)
-    for k=2:m+1
-        i=[i;1:n-k+1;k:n]
-        j=[j;k:n;1:n-k+1]
-        rs=randn(n-k+1)
-        r=[r;rs;rs]
+function bandGOE(n,m)
+    A=zeros(n,n)
+    for k=1:n
+        A[k,k]=2randn()
     end
-    sparse(i,j,r)
+    for k=2:m,j=1:n-m+1
+        r=randn()
+        A[j,j+k-1]=r
+        A[j+k-1,j]=r
+    end
+    A
 end
 
 
